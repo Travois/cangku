@@ -365,7 +365,7 @@ dlnode *outnum(dlnode *L)//按编号出库函数
 { 
 int num;
 dlnode *head=L;
-
+int ion=0; 
 printf("请输入出库货物的编号:");
 scanf("%d",&num);
 while((L=L->next)!=head)
@@ -393,21 +393,28 @@ else
 L->prior->next=L->next;
 L->next->prior=L->prior;
 ifempty--; //ifempty减1 
+ion=1;
+} 
+}
+if(ion==1)
+{
 printf("编号为%d的货物成功出库",num); 
 getchar();getchar();
 return head; 
-} 
 }
+else
+{
 printf("未找到该元器件，请检查是否输入错误\n\n");
 getchar();getchar();
 return (head);
+}
 }
 
 dlnode *outname(dlnode *L)//按名称出库函数
 {
 char na[32];
 dlnode *head=L;
-
+int ion=0;
 printf("请输入出库货物的名称:");
 scanf("%s",&na);
 while((L=L->next)!=head)
@@ -435,21 +442,28 @@ else
 L->prior->next=L->next;
 L->next->prior=L->prior;
 ifempty--; //ifempty减1 
+ion=1;
+}
+}
+if(ion==1)
+{
 printf("名称为%s的货物成功出库",na);
 getchar();getchar();
 return (head);
 }
-}
+else
+{
 printf("未找到该元器件，请检查是否输入错误\n\n");
 getchar();getchar();
 return(head);
+}
 } 
 
-dlnode *outkind(dlnode *L)//按名称出库函数
+dlnode *outkind(dlnode *L)//按类型出库函数
 {
 char ki[32];
 dlnode *head=L;
-
+int ion=0; 
 printf("请输入出库货物的类型:");
 scanf("%s",&ki);
 while((L=L->next)!=head)
@@ -477,14 +491,21 @@ else
 L->prior->next=L->next;
 L->next->prior=L->prior;
 ifempty--; //ifempty减1 
+ion=1;
+}
+}
+if(ion==1)
+{
 printf("类型为%s的货物成功出库",ki);
 getchar();getchar();
 return (head);
 }
-}
+else
+{
 printf("未找到该元器件，请检查是否输入错误\n\n");
 getchar();getchar();
 return(head);
+}
 } 
 
 void display(dlnode *L)//显示货物清单
