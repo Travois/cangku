@@ -3,34 +3,34 @@
 #include<string.h>
 #include<malloc.h>
 #define max 32
-int ifempty=0;//±êÖ¾£¬ÅĞ¶ÏÁ´±íÊÇÎŞ·ñÎª¿Õ
+int ifempty=0;//æ ‡å¿—ï¼Œåˆ¤æ–­é“¾è¡¨æ˜¯æ— å¦ä¸ºç©º
 long long int nowcounter=0;
-long long int outcounter[3000][12]={0};
-long long int incounter[3000][12]={0};
+long long int outcounter[2050][13]={0};
+long long int incounter[2050][13]={0};
 struct outmouth
 {
 	char name[max];
-	int counter[3000][12];
+	int counter[2050][13];
 }out_mouth[5000];
 int ii=0;
 struct outmouth_ki
 {
 	char kind[max];
-	int counter[3000][12];
+	int counter[2050][13];
 }out_mouth_ki[5000];
 int oo=0;
-typedef struct dnode /* ¶¨ÒåË«ÏòÁ´±í½á¹¹Ìå */ 
+typedef struct dnode /* å®šä¹‰åŒå‘é“¾è¡¨ç»“æ„ä½“ */ 
 {
-int year;/*Äê*/ 
-int mouth;/*ÔÂ*/ 
-int day;/*ÈÕ*/ 
-int number; /* »õÎï±àºÅ */
-char name[max]; /* »õÎïÃû³Æ */ 
-char  kind[max];/*»õÎïÀàĞÍ*/
-int price;/*µ¥¼Û*/
-int counter; /* »õÎïÊıÁ¿ */
+int year;/*å¹´*/ 
+int mouth;/*æœˆ*/ 
+int day;/*æ—¥*/ 
+int number; /* è´§ç‰©ç¼–å· */
+char name[max]; /* è´§ç‰©åç§° */ 
+char  kind[max];/*è´§ç‰©ç±»å‹*/
+int price;/*å•ä»·*/
+int counter; /* è´§ç‰©æ•°é‡ */
 struct dnode *prior, *next;
-/* ¶¨ÒåÁ½Ö¸Õë£¬·Ö±ğÖ¸ÏòÆäÇ°ÇıºÍºó¼Ì */
+/* å®šä¹‰ä¸¤æŒ‡é’ˆï¼Œåˆ†åˆ«æŒ‡å‘å…¶å‰é©±å’Œåç»§ */
 }dlnode; 
 
 dlnode *create(dlnode *L);
@@ -53,40 +53,40 @@ void iocounter()
 	while(1)
 {
 printf("=====================\n");
-printf("1.ÔÚ¿âÔªÆ÷¼ş×Ü¼ÛÖµ\n");
-printf("2.Ã¿ÔÂ³ö¿âÔªÆ÷¼ş×Ü¼ÛÖµ\n");
-printf("3.Ã¿ÔÂ³ö¿âÔªÆ÷¼şÊıÁ¿(°´Ãû³Æ²éÑ¯)\n");
-printf("4.Ã¿ÔÂ³ö¿âÔªÆ÷¼şÊıÁ¿(°´ÀàĞÍ²éÑ¯)\n");
-printf("0.·µ»ØÉÏÒ»²ã\n");
+printf("1.åœ¨åº“å…ƒå™¨ä»¶æ€»ä»·å€¼\n");
+printf("2.æ¯æœˆå‡ºåº“å…ƒå™¨ä»¶æ€»ä»·å€¼\n");
+printf("3.æ¯æœˆå‡ºåº“å…ƒå™¨ä»¶æ•°é‡(æŒ‰åç§°æŸ¥è¯¢)\n");
+printf("4.æ¯æœˆå‡ºåº“å…ƒå™¨ä»¶æ•°é‡(æŒ‰ç±»å‹æŸ¥è¯¢)\n");
+printf("0.è¿”å›ä¸Šä¸€å±‚\n");
 printf("====================\n");
-printf("Ñ¡Ôñ0--4:");
+printf("é€‰æ‹©0--4:");
 scanf("%d",&y);
 switch(y)
 {
-case 1:printf("ÔÚ¿âÔªÆ÷¼ş×Ü¼ÛÖµÎª%lld\n",nowcounter);break;
-case 2:printf("ÇëÊäÈëÄê·İÓëÔÂ·İ£º\n");
+case 1:printf("åœ¨åº“å…ƒå™¨ä»¶æ€»ä»·å€¼ä¸º%lld\n",nowcounter);break;
+case 2:printf("è¯·è¾“å…¥å¹´ä»½ä¸æœˆä»½ï¼š\n");
 		scanf("%d%d",&ye,&mo);
-		printf("%dÄê%dÔÂµÄ³ö¿âÔªÆ÷¼ş×Ü¼ÛÖµÎª%lld\n",ye,mo,outcounter[ye][mo]);
+		printf("%då¹´%dæœˆçš„å‡ºåº“å…ƒå™¨ä»¶æ€»ä»·å€¼ä¸º%lld\n",ye,mo,outcounter[ye][mo]);
 		break;
-case 3:printf("ÇëÊäÈëÔªÆ÷¼şÃû³Æ£º\n") ;
+case 3:printf("è¯·è¾“å…¥å…ƒå™¨ä»¶åç§°ï¼š\n") ;
 		scanf("%s",&na);
-		printf("ÇëÊäÈëÄê·İÓëÔÂ·İ£º\n") ;
+		printf("è¯·è¾“å…¥å¹´ä»½ä¸æœˆä»½ï¼š\n") ;
 		scanf("%d%d",&ye,&mo);
 		for(int i=0;i<=ii;i++)
 		if(strcmp(out_mouth[i].name,na)==0)
-		printf("%dÄê%dÔÂ%s¹²³ö¿â%lld¼ş\n",ye,mo,na,out_mouth[i].counter[ye][mo]);
-		else printf("Î´ÕÒµ½¸ÃÔªÆ÷¼ş£¬Çë¼ì²éÊÇ·ñÊäÈë´íÎó\n");
+		printf("%då¹´%dæœˆ%så…±å‡ºåº“%lldä»¶\n",ye,mo,na,out_mouth[i].counter[ye][mo]);
+		else printf("æœªæ‰¾åˆ°è¯¥å…ƒå™¨ä»¶ï¼Œè¯·æ£€æŸ¥æ˜¯å¦è¾“å…¥é”™è¯¯\n");
 		break;
-case 4:printf("ÇëÊäÈëÔªÆ÷¼şÀàĞÍ£º\n") ;
+case 4:printf("è¯·è¾“å…¥å…ƒå™¨ä»¶ç±»å‹ï¼š\n") ;
 		scanf("%s",&ki);
-		printf("ÇëÊäÈëÄê·İÓëÔÂ·İ£º\n") ;
+		printf("è¯·è¾“å…¥å¹´ä»½ä¸æœˆä»½ï¼š\n") ;
 		scanf("%d%d",&ye,&mo);
 		for(int i=0;i<=oo;i++)
 		if(strcmp(out_mouth_ki[i].kind,ki)==0)
-		printf("%dÄê%dÔÂ%s¹²³ö¿â%lld¼ş\n",ye,mo,ki,out_mouth_ki[i].counter[ye][mo]);
-		else printf("Î´ÕÒµ½¸ÃÔªÆ÷¼ş£¬Çë¼ì²éÊÇ·ñÊäÈë´íÎó\n");
+		printf("%då¹´%dæœˆ%så…±å‡ºåº“%lldä»¶\n",ye,mo,ki,out_mouth_ki[i].counter[ye][mo]);
+		else printf("æœªæ‰¾åˆ°è¯¥å…ƒå™¨ä»¶ï¼Œè¯·æ£€æŸ¥æ˜¯å¦è¾“å…¥é”™è¯¯\n");
 		break;
-case 0:return;//·µ»Ø
+case 0:return;//è¿”å›
 default:printf("enter error!Please input 0--4!\n\n");
 getchar();getchar();printf("\n\n");
 }
@@ -96,42 +96,42 @@ int main()
 {
 int x;
 dlnode *L;
-if(!(L=(dlnode *)malloc(sizeof(dlnode)))) //·ÖÅä¿Õ¼ä
+if(!(L=(dlnode *)malloc(sizeof(dlnode)))) //åˆ†é…ç©ºé—´
 {
 printf("\n");
 exit(1);
 }
-create(L);///µ÷ÓÃº¯Êı£¬´´½¨Í·½Úµã
+create(L);///è°ƒç”¨å‡½æ•°ï¼Œåˆ›å»ºå¤´èŠ‚ç‚¹
 while(1)
-{////////////////////////Ö÷²Ëµ¥///////////////////////////
+{////////////////////////ä¸»èœå•///////////////////////////
 printf(" ============================\n");
-printf(" 1. »õÎï³ö¿âºÍÈë¿â\n");
-printf(" 2. ²éÕÒ»õÎï±í\n"); 
-printf(" 3. ÏÔÊ¾²Ö¿â»õÎï±í\n");
-printf(" 4. Í³¼ÆÊı¾İ\n");
-printf(" 0. ÍË³ö\n");
+printf(" 1. è´§ç‰©å‡ºåº“å’Œå…¥åº“\n");
+printf(" 2. æŸ¥æ‰¾è´§ç‰©è¡¨\n"); 
+printf(" 3. æ˜¾ç¤ºä»“åº“è´§ç‰©è¡¨\n");
+printf(" 4. ç»Ÿè®¡æ•°æ®\n");
+printf(" 0. é€€å‡º\n");
 printf(" =============================\n");
-printf(" Ñ¡Ôñ0--4:");
+printf(" é€‰æ‹©0--4:");
 scanf("%d",&x);
 switch(x)
 {
-case 2:search(L);break;//µ÷ÓÃ²éÕÒº¯Êı
-case 1:current(L);break;//µ÷ÓÃÈë¿â³ö¿âº¯Êı
-case 3:display(L);break;//µ÷ÓÃÏÔÊ¾Êä³öº¯Êı
-case 4:iocounter();break;//µ÷ÓÃÍ³¼Æº¯Êı 
+case 2:search(L);break;//è°ƒç”¨æŸ¥æ‰¾å‡½æ•°
+case 1:current(L);break;//è°ƒç”¨å…¥åº“å‡ºåº“å‡½æ•°
+case 3:display(L);break;//è°ƒç”¨æ˜¾ç¤ºè¾“å‡ºå‡½æ•°
+case 4:iocounter();break;//è°ƒç”¨ç»Ÿè®¡å‡½æ•° 
 case 0:printf("\n bye!see you!\n");
-getchar();getchar();exit(0);//ÍË³ö³ÌĞò
+getchar();getchar();exit(0);//é€€å‡ºç¨‹åº
 default:printf("\n Enter erreor!please input 0--4!"); 
 getchar();getchar();
 }
 }
 }
-dlnode *create(dlnode *L)//´´½¨Á´±íÍ·½Úµã
+dlnode *create(dlnode *L)//åˆ›å»ºé“¾è¡¨å¤´èŠ‚ç‚¹
 {
-printf(" »¶Ó­Ê¹ÓÃµç×ÓÔªÆ÷¼ş²Ö¿â¹ÜÀíÏµÍ³");
+printf(" æ¬¢è¿ä½¿ç”¨ç”µå­å…ƒå™¨ä»¶ä»“åº“ç®¡ç†ç³»ç»Ÿ");
 getchar(); 
 ifempty=0;
-///////³õÊ¼»¯Í·½ÚµãµÄÖµ////////
+///////åˆå§‹åŒ–å¤´èŠ‚ç‚¹çš„å€¼////////
 L->next=NULL;L->prior=NULL;
 L->number=L->counter=L->day=L->mouth=L->year=L->price=0;
 strcpy(L->name," "); 
@@ -139,12 +139,12 @@ strcpy(L->kind," ");
 return L;
 }
 
-void search(dlnode *L) ///²éÕÒµÄÖ÷Òª²Ëµ¥
+void search(dlnode *L) ///æŸ¥æ‰¾çš„ä¸»è¦èœå•
 {
 int y;
 if(ifempty==0)
 {
-printf("Ã»ÓĞÊäÈë»õÎï!\n");
+printf("æ²¡æœ‰è¾“å…¥è´§ç‰©!\n");
 getchar();getchar();
 return;
 }
@@ -153,129 +153,129 @@ else
 while(1)
 {
 printf("=====================\n");
-printf("1.°´±àºÅ²éÑ¯\n");
-printf("2.°´»õÎïÃû³Æ²éÑ¯\n");
-printf("3.°´»õÎïÀàĞÍ²éÑ¯\n");
-printf("0.·µ»ØÉÏÒ»²ã\n");
+printf("1.æŒ‰ç¼–å·æŸ¥è¯¢\n");
+printf("2.æŒ‰è´§ç‰©åç§°æŸ¥è¯¢\n");
+printf("3.æŒ‰è´§ç‰©ç±»å‹æŸ¥è¯¢\n");
+printf("0.è¿”å›ä¸Šä¸€å±‚\n");
 printf("====================\n");
-printf("Ñ¡Ôñ0--3:");
+printf("é€‰æ‹©0--3:");
 scanf("%d",&y);
 switch(y)
 {
-case 1:searchnum(L);break;//µ÷ÓÃ°´±àºÅ²éÕÒµÄº¯Êı
-case 2:searchname(L);break;//µ÷ÓÃ°´Ãû³Æ²éÕÒµÄº¯Êı
-case 3:searchkind(L);break;//µ÷ÓÃ°´Ãû³Æ²éÕÒµÄº¯Êı
-case 0:return;//·µ»Ø
+case 1:searchnum(L);break;//è°ƒç”¨æŒ‰ç¼–å·æŸ¥æ‰¾çš„å‡½æ•°
+case 2:searchname(L);break;//è°ƒç”¨æŒ‰åç§°æŸ¥æ‰¾çš„å‡½æ•°
+case 3:searchkind(L);break;//è°ƒç”¨æŒ‰åç§°æŸ¥æ‰¾çš„å‡½æ•°
+case 0:return;//è¿”å›
 default:printf("enter error!Please input 0--3!\n\n");
 getchar();getchar();printf("\n\n");
 }
 }
 }
 }
-void searchnum(dlnode *L)///°´±àºÅ²éÕÒµÄº¯Êı
+void searchnum(dlnode *L)///æŒ‰ç¼–å·æŸ¥æ‰¾çš„å‡½æ•°
 {
-int num,flag=0;//flagÎªÊÇ·ñÕÒµ½µÄ±êÖ¾
+int num,flag=0;//flagä¸ºæ˜¯å¦æ‰¾åˆ°çš„æ ‡å¿—
 dlnode *head=L;
 if(ifempty==0)
 {
-printf("Ã»ÓĞ»õÎï±»ÊäÈë\n");
+printf("æ²¡æœ‰è´§ç‰©è¢«è¾“å…¥\n");
 getchar();getchar();
 return;
 }
-printf("ÊäÈëÄãÒª²éÕÒµÄ»õÎï±àºÅ:\n");
+printf("è¾“å…¥ä½ è¦æŸ¥æ‰¾çš„è´§ç‰©ç¼–å·:\n");
 scanf("%d",&num);
 while((L=L->next)!=head)
 {
 if(L->number==num)
-{ flag=1;//flagÎª1Ê±±íÊ¾ÕÒµ½
-printf("ÕÒµ½Ö¸¶¨±àºÅ»õÎï \n"); 
-printf("\n±àºÅ:%d\n",L->number);
-printf("Ãû³Æ:%s\n",L->name) ;
-printf("ÀàĞÍ:%s\n",L->kind) ;
-printf("ÊıÁ¿:%d\n\n",L->counter); 
+{ flag=1;//flagä¸º1æ—¶è¡¨ç¤ºæ‰¾åˆ°
+printf("æ‰¾åˆ°æŒ‡å®šç¼–å·è´§ç‰© \n"); 
+printf("\nç¼–å·:%d\n",L->number);
+printf("åç§°:%s\n",L->name) ;
+printf("ç±»å‹:%s\n",L->kind) ;
+printf("æ•°é‡:%d\n\n",L->counter); 
 } 
 }
-if(flag==0)//flagÎª0Ê±±íÊ¾Ã»ÓĞÕÒµ½
-printf("Î´ÕÒµ½¸ÃÔªÆ÷¼ş£¬Çë¼ì²éÊÇ·ñÊäÈë´íÎó\n");
+if(flag==0)//flagä¸º0æ—¶è¡¨ç¤ºæ²¡æœ‰æ‰¾åˆ°
+printf("æœªæ‰¾åˆ°è¯¥å…ƒå™¨ä»¶ï¼Œè¯·æ£€æŸ¥æ˜¯å¦è¾“å…¥é”™è¯¯\n");
 getchar();getchar();
 }
 
-void searchname(dlnode *L)//°´Ãû³Æ²éÕÒµÄº¯Êı
+void searchname(dlnode *L)//æŒ‰åç§°æŸ¥æ‰¾çš„å‡½æ•°
 {
-int flag=0;//flagÎªÊÇ·ñÕÒµ½µÄ±êÖ¾
+int flag=0;//flagä¸ºæ˜¯å¦æ‰¾åˆ°çš„æ ‡å¿—
 char na[32];
 dlnode *head=L;
 if(ifempty==0)
 {
-printf("Ã»ÓĞ»õÎï±»ÊäÈë\n");
+printf("æ²¡æœ‰è´§ç‰©è¢«è¾“å…¥\n");
 getchar();getchar();
 return;
 }
-printf("ÊäÈëÄãÒª²éÕÒµÄ»õÎïÃû³Æ\n");
+printf("è¾“å…¥ä½ è¦æŸ¥æ‰¾çš„è´§ç‰©åç§°\n");
 scanf("%s",&na);
 while((L=L->next)!=head)
 {
 if(strcmp(L->name,na)==0)
-{ flag=1;//flagÎª1Ê±±íÊ¾ÕÒµ½
-printf("ÕÒµ½Ö¸¶¨Ãû³Æ»õÎï \n"); 
-printf("\n±àºÅ:%d\n",L->number);
-printf("Ãû³Æ:%s\n",L->name) ;
-printf("ÀàĞÍ:%s\n",L->kind) ;
-printf("ÊıÁ¿:%d\n\n",L->counter); 
+{ flag=1;//flagä¸º1æ—¶è¡¨ç¤ºæ‰¾åˆ°
+printf("æ‰¾åˆ°æŒ‡å®šåç§°è´§ç‰© \n"); 
+printf("\nç¼–å·:%d\n",L->number);
+printf("åç§°:%s\n",L->name) ;
+printf("ç±»å‹:%s\n",L->kind) ;
+printf("æ•°é‡:%d\n\n",L->counter); 
 } 
 }
 
-if(flag==0)//flagÎª0Ê±±íÊ¾Ã»ÓĞÕÒµ½
-printf("Î´ÕÒµ½¸ÃÔªÆ÷¼ş£¬Çë¼ì²éÊÇ·ñÊäÈë´íÎó\n\n");
+if(flag==0)//flagä¸º0æ—¶è¡¨ç¤ºæ²¡æœ‰æ‰¾åˆ°
+printf("æœªæ‰¾åˆ°è¯¥å…ƒå™¨ä»¶ï¼Œè¯·æ£€æŸ¥æ˜¯å¦è¾“å…¥é”™è¯¯\n\n");
 getchar();getchar();
 }
 
-void searchkind(dlnode *L)//°´Ãû³Æ²éÕÒµÄº¯Êı
+void searchkind(dlnode *L)//æŒ‰åç§°æŸ¥æ‰¾çš„å‡½æ•°
 {
-int flag=0;//flagÎªÊÇ·ñÕÒµ½µÄ±êÖ¾
+int flag=0;//flagä¸ºæ˜¯å¦æ‰¾åˆ°çš„æ ‡å¿—
 char ki[32];
 dlnode *head=L;
 if(ifempty==0)
 {
-printf("Ã»ÓĞ»õÎï±»ÊäÈë\n");
+printf("æ²¡æœ‰è´§ç‰©è¢«è¾“å…¥\n");
 getchar();getchar();
 return;
 }
-printf("ÊäÈëÄãÒª²éÕÒµÄ»õÎïÀàĞÍ\n");
+printf("è¾“å…¥ä½ è¦æŸ¥æ‰¾çš„è´§ç‰©ç±»å‹\n");
 scanf("%s",&ki);
 while((L=L->next)!=head)
 {
 if(strcmp(L->kind,ki)==0)
-{ flag=1;//flagÎª1Ê±±íÊ¾ÕÒµ½
-printf("ÕÒµ½Ö¸¶¨ÀàĞÍ»õÎï \n"); 
-printf("\n±àºÅ:%d\n",L->number);
-printf("Ãû³Æ:%s\n",L->name) ;
-printf("ÀàĞÍ:%s\n",L->kind) ; 
-printf("ÊıÁ¿:%d\n\n",L->counter); 
+{ flag=1;//flagä¸º1æ—¶è¡¨ç¤ºæ‰¾åˆ°
+printf("æ‰¾åˆ°æŒ‡å®šç±»å‹è´§ç‰© \n"); 
+printf("\nç¼–å·:%d\n",L->number);
+printf("åç§°:%s\n",L->name) ;
+printf("ç±»å‹:%s\n",L->kind) ; 
+printf("æ•°é‡:%d\n\n",L->counter); 
 } 
 }
 
-if(flag==0)//flagÎª0Ê±±íÊ¾Ã»ÓĞÕÒµ½
-printf("Î´ÕÒµ½¸ÃÔªÆ÷¼ş£¬Çë¼ì²éÊÇ·ñÊäÈë´íÎó\n\n");
+if(flag==0)//flagä¸º0æ—¶è¡¨ç¤ºæ²¡æœ‰æ‰¾åˆ°
+printf("æœªæ‰¾åˆ°è¯¥å…ƒå™¨ä»¶ï¼Œè¯·æ£€æŸ¥æ˜¯å¦è¾“å…¥é”™è¯¯\n\n");
 getchar();getchar();
 }
-dlnode *current(dlnode *L)//»õÎï³ö¿âÈë¿âº¯Êı
+dlnode *current(dlnode *L)//è´§ç‰©å‡ºåº“å…¥åº“å‡½æ•°
 {
 int y;
 while(1)
 {
 printf("========================\n");
-printf(" 1.»õÎïÈë¿â\n");
-printf(" 2.»õÎï³ö¿â\n");
-printf(" 0.·µ»ØÉÏÒ»²ã\n");
+printf(" 1.è´§ç‰©å…¥åº“\n");
+printf(" 2.è´§ç‰©å‡ºåº“\n");
+printf(" 0.è¿”å›ä¸Šä¸€å±‚\n");
 printf("========================\n");
-printf(" Ñ¡Ôñ0--2:");
+printf(" é€‰æ‹©0--2:");
 scanf("%d",&y);
 switch(y)
 {
-case 1:input(L);break;//µ÷ÓÃÈë¿âº¯Êı
-case 2:output(L);break;//µ÷ÓÃ³ö¿âº¯Êı
-case 0:return(L);//·µ»ØÉÏÒ»²ã
+case 1:input(L);break;//è°ƒç”¨å…¥åº“å‡½æ•°
+case 2:output(L);break;//è°ƒç”¨å‡ºåº“å‡½æ•°
+case 0:return(L);//è¿”å›ä¸Šä¸€å±‚
 default:printf("enter error!Please input 0--2!");
 getchar();getchar();
 printf("\n\n");
@@ -283,93 +283,93 @@ printf("\n\n");
 }
 }
 
-dlnode *input(dlnode *L)//¶¨ÒåÈë¿âº¯Êı
+dlnode *input(dlnode *L)//å®šä¹‰å…¥åº“å‡½æ•°
 {
 dlnode *in,*head;
-head=in=(dlnode *)malloc(sizeof(dlnode));//·ÖÅä¿Õ¼ä
+head=in=(dlnode *)malloc(sizeof(dlnode));//åˆ†é…ç©ºé—´
 head=L;
 
-printf("\nÇëÊäÈëÈÕÆÚ(Äê ÔÂ ÈÕ)£º\n");
+printf("\nè¯·è¾“å…¥æ—¥æœŸ(å¹´ æœˆ æ—¥)ï¼š\n");
 scanf("%d%d%d",&in->year,&in->mouth,&in->day);
-printf("\nÇëÊäÈë»õÎïÊı¾İ:\n");
-printf("±àºÅ:");scanf("%d",&in->number);
-printf("Ãû³Æ:");scanf("%s",&in->name);
-printf("ÀàĞÍ:");scanf("%s",&in->kind);
-printf("µ¥¼Û:");scanf("%d",&in->price);
-printf("ÊıÁ¿:");scanf("%d",&in->counter);
+printf("\nè¯·è¾“å…¥è´§ç‰©æ•°æ®:\n");
+printf("ç¼–å·:");scanf("%d",&in->number);
+printf("åç§°:");scanf("%s",&in->name);
+printf("ç±»å‹:");scanf("%s",&in->kind);
+printf("å•ä»·:");scanf("%d",&in->price);
+printf("æ•°é‡:");scanf("%d",&in->counter);
 incounter[in->year][in->mouth]+=in->price*in->counter;
 nowcounter+=in->price*in->counter;
-if(L->next==NULL) //Èç¹ûÖ»ÓĞÍ·½Úµã£¬
-{ //°Ñ¸ÕÊäÈëµÄin½Úµã
-L->next=in; //¸úÔÚÍ·½ÚµãºóÃæ
+if(L->next==NULL) //å¦‚æœåªæœ‰å¤´èŠ‚ç‚¹ï¼Œ
+{ //æŠŠåˆšè¾“å…¥çš„inèŠ‚ç‚¹
+L->next=in; //è·Ÿåœ¨å¤´èŠ‚ç‚¹åé¢
 L->prior=in; //
 in->next=L; //
 in->prior=L; //
-ifempty++; //ifempty¼Ó1
+ifempty++; //ifemptyåŠ 1
 }
 else
-{//Èç¹ûµ±Ç°LµÄÏÂÒ»¸ö½Úµã²»ÊÇÍ·½Úµã
+{//å¦‚æœå½“å‰Lçš„ä¸‹ä¸€ä¸ªèŠ‚ç‚¹ä¸æ˜¯å¤´èŠ‚ç‚¹
 while((L=L->next)!=head)
-{//Èç¹ûÊäÈëµÄÊı´óÓÚL->number£¬Ôò²åµ½LµÄÇ°Ãæ
+{//å¦‚æœè¾“å…¥çš„æ•°å¤§äºL->numberï¼Œåˆ™æ’åˆ°Lçš„å‰é¢
 if(L->number<in->number)
 {
 in->next=L;
 in->prior=L->prior; 
 L->prior->next=in;
 L->prior=in;
-ifempty++; //ifempty¼Ó1
+ifempty++; //ifemptyåŠ 1
 return(head);
 } 
 }
-//ÊäÈëµÄ±àºÅ±ÈÆäËü±àºÅ¶¼Ğ¡£¬Ôò²åµ½×îºó¸ö½Úµã£¬²¢Ê×Î²ÏàÁ¬
+//è¾“å…¥çš„ç¼–å·æ¯”å…¶å®ƒç¼–å·éƒ½å°ï¼Œåˆ™æ’åˆ°æœ€åä¸ªèŠ‚ç‚¹ï¼Œå¹¶é¦–å°¾ç›¸è¿
 head->prior->next=in;
 in->prior=head->prior;
 head->prior=in;
 in->next=head;
-ifempty++; //ifempty¼Ó1
+ifempty++; //ifemptyåŠ 1
 } 
 return head;
 }
 
-dlnode *output(dlnode *L)//³ö¿âµÄº¯Êı
+dlnode *output(dlnode *L)//å‡ºåº“çš„å‡½æ•°
 {
 int y;
 dlnode *head=L;
-if(ifempty==0)//¼ì²âÊÇ·ñÓĞ»õÎïÊäÈë
+if(ifempty==0)//æ£€æµ‹æ˜¯å¦æœ‰è´§ç‰©è¾“å…¥
 {
-printf("Ã»ÓĞ»õÎïÊäÈëÏµÍ³\n");
+printf("æ²¡æœ‰è´§ç‰©è¾“å…¥ç³»ç»Ÿ\n");
 getchar();getchar();
 return(head);
 } 
 while(1)
 {
 printf("=============\n");
-printf("1.°´±àºÅ³ö¿â\n");
-printf("2.°´Ãû³Æ³ö¿â\n");
-printf("3.°´ÀàĞÍ³ö¿â\n");
-printf("0.·µ»ØÉÏÒ»²ã\n");
+printf("1.æŒ‰ç¼–å·å‡ºåº“\n");
+printf("2.æŒ‰åç§°å‡ºåº“\n");
+printf("3.æŒ‰ç±»å‹å‡ºåº“\n");
+printf("0.è¿”å›ä¸Šä¸€å±‚\n");
 printf("==============\n");
-printf("Ñ¡Ôñ0--3:");scanf("%d",&y);
+printf("é€‰æ‹©0--3:");scanf("%d",&y);
 switch(y)
 {
-case 1:outnum(L);break;//µ÷ÓÃ°´±àºÅ³ö¿âº¯Êı
-case 2:outname(L);break;//µ÷ÓÃ°´Ãû³Æ³ö¿âº¯Êı
-case 3:outkind(L);break;//µ÷ÓÃ°´ÀàĞÍ³ö¿âº¯Êı
+case 1:outnum(L);break;//è°ƒç”¨æŒ‰ç¼–å·å‡ºåº“å‡½æ•°
+case 2:outname(L);break;//è°ƒç”¨æŒ‰åç§°å‡ºåº“å‡½æ•°
+case 3:outkind(L);break;//è°ƒç”¨æŒ‰ç±»å‹å‡ºåº“å‡½æ•°
 case 0:return(L);
 default:printf("enter error!Please input 0--3!");
 getchar();getchar();printf("\n\n");
 }
 }
 } 
-dlnode *outnum(dlnode *L)//°´±àºÅ³ö¿âº¯Êı
+dlnode *outnum(dlnode *L)//æŒ‰ç¼–å·å‡ºåº“å‡½æ•°
 { 
 int num;
 dlnode *head=L;
 
-printf("ÇëÊäÈë³ö¿â»õÎïµÄ±àºÅ:");
+printf("è¯·è¾“å…¥å‡ºåº“è´§ç‰©çš„ç¼–å·:");
 scanf("%d",&num);
 while((L=L->next)!=head)
-{//Èç¹ûÕÒµ½¾ÍÉ¾³ı½Úµã
+{//å¦‚æœæ‰¾åˆ°å°±åˆ é™¤èŠ‚ç‚¹
 if(L->number==num)
 {
 outcounter[L->year][L->mouth]+=L->price*L->counter;
@@ -392,26 +392,26 @@ else
 }
 L->prior->next=L->next;
 L->next->prior=L->prior;
-ifempty--; //ifempty¼õ1 
-printf("±àºÅÎª%dµÄ»õÎï³É¹¦³ö¿â",num); 
+ifempty--; //ifemptyå‡1 
+printf("ç¼–å·ä¸º%dçš„è´§ç‰©æˆåŠŸå‡ºåº“",num); 
 getchar();getchar();
 return head; 
 } 
 }
-printf("Î´ÕÒµ½¸ÃÔªÆ÷¼ş£¬Çë¼ì²éÊÇ·ñÊäÈë´íÎó\n\n");
+printf("æœªæ‰¾åˆ°è¯¥å…ƒå™¨ä»¶ï¼Œè¯·æ£€æŸ¥æ˜¯å¦è¾“å…¥é”™è¯¯\n\n");
 getchar();getchar();
 return (head);
 }
 
-dlnode *outname(dlnode *L)//°´Ãû³Æ³ö¿âº¯Êı
+dlnode *outname(dlnode *L)//æŒ‰åç§°å‡ºåº“å‡½æ•°
 {
 char na[32];
 dlnode *head=L;
 
-printf("ÇëÊäÈë³ö¿â»õÎïµÄÃû³Æ:");
+printf("è¯·è¾“å…¥å‡ºåº“è´§ç‰©çš„åç§°:");
 scanf("%s",&na);
 while((L=L->next)!=head)
-{//Èç¹ûÕÒµ½¾ÍÉ¾³ı½Úµã
+{//å¦‚æœæ‰¾åˆ°å°±åˆ é™¤èŠ‚ç‚¹
 if(strcmp(L->name,na)==0)
 {
 outcounter[L->year][L->mouth]+=L->price*L->counter;
@@ -434,26 +434,26 @@ else
 }
 L->prior->next=L->next;
 L->next->prior=L->prior;
-ifempty--; //ifempty¼õ1 
-printf("Ãû³ÆÎª%sµÄ»õÎï³É¹¦³ö¿â",na);
+ifempty--; //ifemptyå‡1 
+printf("åç§°ä¸º%sçš„è´§ç‰©æˆåŠŸå‡ºåº“",na);
 getchar();getchar();
 return (head);
 }
 }
-printf("Î´ÕÒµ½¸ÃÔªÆ÷¼ş£¬Çë¼ì²éÊÇ·ñÊäÈë´íÎó\n\n");
+printf("æœªæ‰¾åˆ°è¯¥å…ƒå™¨ä»¶ï¼Œè¯·æ£€æŸ¥æ˜¯å¦è¾“å…¥é”™è¯¯\n\n");
 getchar();getchar();
 return(head);
 } 
 
-dlnode *outkind(dlnode *L)//°´Ãû³Æ³ö¿âº¯Êı
+dlnode *outkind(dlnode *L)//æŒ‰åç§°å‡ºåº“å‡½æ•°
 {
 char ki[32];
 dlnode *head=L;
 
-printf("ÇëÊäÈë³ö¿â»õÎïµÄÀàĞÍ:");
+printf("è¯·è¾“å…¥å‡ºåº“è´§ç‰©çš„ç±»å‹:");
 scanf("%s",&ki);
 while((L=L->next)!=head)
-{//Èç¹ûÕÒµ½¾ÍÉ¾³ı½Úµã
+{//å¦‚æœæ‰¾åˆ°å°±åˆ é™¤èŠ‚ç‚¹
 if(strcmp(L->kind,ki)==0)
 {
 outcounter[L->year][L->mouth]+=L->price*L->counter;
@@ -476,33 +476,33 @@ else
 }
 L->prior->next=L->next;
 L->next->prior=L->prior;
-ifempty--; //ifempty¼õ1 
-printf("ÀàĞÍÎª%sµÄ»õÎï³É¹¦³ö¿â",ki);
+ifempty--; //ifemptyå‡1 
+printf("ç±»å‹ä¸º%sçš„è´§ç‰©æˆåŠŸå‡ºåº“",ki);
 getchar();getchar();
 return (head);
 }
 }
-printf("Î´ÕÒµ½¸ÃÔªÆ÷¼ş£¬Çë¼ì²éÊÇ·ñÊäÈë´íÎó\n\n");
+printf("æœªæ‰¾åˆ°è¯¥å…ƒå™¨ä»¶ï¼Œè¯·æ£€æŸ¥æ˜¯å¦è¾“å…¥é”™è¯¯\n\n");
 getchar();getchar();
 return(head);
 } 
 
-void display(dlnode *L)//ÏÔÊ¾»õÎïÇåµ¥
+void display(dlnode *L)//æ˜¾ç¤ºè´§ç‰©æ¸…å•
 {
 dlnode *head=L;
 if(ifempty==0)
 {
-printf("Ã»ÓĞ»õÎï¿ÉÏÔÊ¾\n");
+printf("æ²¡æœ‰è´§ç‰©å¯æ˜¾ç¤º\n");
 getchar();getchar();
 return;
 }
 L=L->next;
 do
 { 
-printf("\n±àºÅ:%d\n",L->number);
-printf("Ãû³Æ:%s\n",L->name) ;
-printf("ÀàĞÍ:%s\n",L->kind) ;
-printf("ÊıÁ¿:%d\n\n",L->counter);
+printf("\nç¼–å·:%d\n",L->number);
+printf("åç§°:%s\n",L->name) ;
+printf("ç±»å‹:%s\n",L->kind) ;
+printf("æ•°é‡:%d\n\n",L->counter);
 }while((L=L->next)!=head);
 getchar();getchar(); 
 }
