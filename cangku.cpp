@@ -61,6 +61,7 @@ printf("0.返回上一层\n");
 printf("====================\n");
 printf("选择0--4:");
 scanf("%d",&y);
+int ion=0;
 switch(y)
 {
 case 1:printf("在库元器件总价值为%lld\n",nowcounter);break;
@@ -74,8 +75,10 @@ case 3:printf("请输入元器件名称：\n") ;
 		scanf("%d%d",&ye,&mo);
 		for(int i=0;i<=ii;i++)
 		if(strcmp(out_mouth[i].name,na)==0)
-		printf("%d年%d月%s共出库%lld件\n",ye,mo,na,out_mouth[i].counter[ye][mo]);
-		else printf("未找到该元器件，请检查是否输入错误\n");
+		{
+		printf("%d年%d月%s共出库%lld件\n",ye,mo,na,out_mouth[i].counter[ye][mo]);ion=1;break;
+		}
+		if(ion==0) printf("未找到该元器件，请检查是否输入错误\n");ion=0;
 		break;
 case 4:printf("请输入元器件类型：\n") ;
 		scanf("%s",&ki);
@@ -83,8 +86,10 @@ case 4:printf("请输入元器件类型：\n") ;
 		scanf("%d%d",&ye,&mo);
 		for(int i=0;i<=oo;i++)
 		if(strcmp(out_mouth_ki[i].kind,ki)==0)
-		printf("%d年%d月%s共出库%lld件\n",ye,mo,ki,out_mouth_ki[i].counter[ye][mo]);
-		else printf("未找到该元器件，请检查是否输入错误\n");
+		{
+		printf("%d年%d月%s共出库%lld件\n",ye,mo,ki,out_mouth_ki[i].counter[ye][mo]);ion=1;break;
+		}	
+		if(ion==0) printf("未找到该元器件，请检查是否输入错误\n");ion=0;
 		break;
 case 0:return;//返回
 default:printf("enter error!Please input 0--4!\n\n");
@@ -374,18 +379,25 @@ if(L->number==num)
 {
 outcounter[L->year][L->mouth]+=L->price*L->counter;
 nowcounter-=L->price*L->counter;
-for(int i=0;i<oo;i++)
+for(int i=0;i<=oo;i++)
 if(strcmp(out_mouth_ki[i].kind,L->kind)==0)
-out_mouth_ki[i].counter[L->year][L->mouth]+=L->counter;
-else
+{
+	out_mouth_ki[i].counter[L->year][L->mouth]+=L->counter,ion=1;
+	break;
+}
+if(ion==0)
 {
 	strcpy(out_mouth_ki[oo++].kind,L->kind);
 	out_mouth_ki[oo-1].counter[L->year][L->mouth]=L->counter;
 }
-for(int i=0;i<ii;i++)
+ion=0;
+for(int i=0;i<=ii;i++)
 if(strcmp(out_mouth[i].name,L->name)==0)
-out_mouth[i].counter[L->year][L->mouth]+=L->counter;
-else
+{
+	out_mouth[i].counter[L->year][L->mouth]+=L->counter;
+	ion=1;break;
+}
+if(ion==0)
 {
 	strcpy(out_mouth[ii++].name,L->name);
 	out_mouth[ii-1].counter[L->year][L->mouth]=L->counter;
@@ -423,21 +435,28 @@ if(strcmp(L->name,na)==0)
 {
 outcounter[L->year][L->mouth]+=L->price*L->counter;
 nowcounter-=L->price*L->counter;
-for(int i=0;i<ii;i++)
-if(strcmp(out_mouth[i].name,L->name)==0)
-out_mouth[i].counter[L->year][L->mouth]+=L->counter;
-else
-{
-	strcpy(out_mouth[ii++].name,L->name);
-	out_mouth[ii-1].counter[L->year][L->mouth]=L->counter;
-}
-for(int i=0;i<oo;i++)
+for(int i=0;i<=oo;i++)
 if(strcmp(out_mouth_ki[i].kind,L->kind)==0)
-out_mouth_ki[i].counter[L->year][L->mouth]+=L->counter;
-else
+{
+	out_mouth_ki[i].counter[L->year][L->mouth]+=L->counter,ion=1;
+	break;
+}
+if(ion==0)
 {
 	strcpy(out_mouth_ki[oo++].kind,L->kind);
 	out_mouth_ki[oo-1].counter[L->year][L->mouth]=L->counter;
+}
+ion=0;
+for(int i=0;i<=ii;i++)
+if(strcmp(out_mouth[i].name,L->name)==0)
+{
+	out_mouth[i].counter[L->year][L->mouth]+=L->counter;
+	ion=1;break;
+}
+if(ion==0)
+{
+	strcpy(out_mouth[ii++].name,L->name);
+	out_mouth[ii-1].counter[L->year][L->mouth]=L->counter;
 }
 L->prior->next=L->next;
 L->next->prior=L->prior;
@@ -472,21 +491,28 @@ if(strcmp(L->kind,ki)==0)
 {
 outcounter[L->year][L->mouth]+=L->price*L->counter;
 nowcounter-=L->price*L->counter;
-for(int i=0;i<ii;i++)
-if(strcmp(out_mouth[i].name,L->name)==0)
-out_mouth[i].counter[L->year][L->mouth]+=L->counter;
-else
-{
-	strcpy(out_mouth[ii++].name,L->name);
-	out_mouth[ii-1].counter[L->year][L->mouth]=L->counter;
-}
-for(int i=0;i<oo;i++)
+for(int i=0;i<=oo;i++)
 if(strcmp(out_mouth_ki[i].kind,L->kind)==0)
-out_mouth_ki[i].counter[L->year][L->mouth]+=L->counter;
-else
+{
+	out_mouth_ki[i].counter[L->year][L->mouth]+=L->counter,ion=1;
+	break;
+}
+if(ion==0)
 {
 	strcpy(out_mouth_ki[oo++].kind,L->kind);
 	out_mouth_ki[oo-1].counter[L->year][L->mouth]=L->counter;
+}
+ion=0;
+for(int i=0;i<=ii;i++)
+if(strcmp(out_mouth[i].name,L->name)==0)
+{
+	out_mouth[i].counter[L->year][L->mouth]+=L->counter;
+	ion=1;break;
+}
+if(ion==0)
+{
+	strcpy(out_mouth[ii++].name,L->name);
+	out_mouth[ii-1].counter[L->year][L->mouth]=L->counter;
 }
 L->prior->next=L->next;
 L->next->prior=L->prior;
